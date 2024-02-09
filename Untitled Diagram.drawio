@@ -1,20 +1,40 @@
-<mxfile host="app.diagrams.net" modified="2024-02-08T16:05:15.369Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0" etag="gM4hG6WljyiUw76o664f" version="23.1.2" type="github">
+<mxfile host="app.diagrams.net" modified="2024-02-09T16:02:22.182Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0" etag="ECNJjCC2Ld-PqbgcGZ6Q" version="23.1.2" type="github">
   <diagram name="Page-1" id="jKYDuiJ0roY6uRcp7r5s">
-    <mxGraphModel dx="737" dy="477" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="737" dy="1589" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-3" value="&lt;div align=&quot;left&quot;&gt;Problem Notes&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="10" y="10" width="160" height="220" as="geometry" />
+        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-3" value="&lt;div align=&quot;left&quot;&gt;Problem Notes&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Source Psql DB&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Plaid Data&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Option 1:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;API Saves Data to Postgres&lt;br&gt;Postgres Add-On triggers write to kafka based on a db trigger&lt;br&gt;Spark consumes from kafka bus&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Option 2:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Streaming paradigm:&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;API Saves to Postgres&lt;br&gt;API Writes to Kafka&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Data Model:&lt;/div&gt;&lt;blockquote&gt;&lt;div align=&quot;left&quot;&gt;Table&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Primary key of the record&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Type of change (Create, Update, Delete) &lt;br&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;Encryption:&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;Lookup table of (Tablename, Fieldname) tuples and boolean encrypt or not&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;*&amp;nbsp; &quot;Create&quot; Record with Fields x, y, z&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;*&amp;nbsp; &quot;Delete&quot; Record with Fields&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Processing:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Spark Cluster &lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Batch process for older data.&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;DB-Writer writes to Postgres&lt;br&gt;DB-Writer produces ChangeEvents to a kafka topic&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Spark job reads from kafka event bus&lt;br&gt;Writes field-encrypted ChangeEvents to a per-table topic&lt;br&gt;Lambda (or k8s job) can create mini-batches and import data into the data lake &lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;At-Rest Data:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Per-source-table tables &lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Primary Key, Event Type, &quot;Fields&quot; json glob, &amp;nbsp; &lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="10" y="12" width="410" height="558" as="geometry" />
         </mxCell>
         <mxCell id="OE3Ah8jcWHLyEWeE8CjI-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="OE3Ah8jcWHLyEWeE8CjI-4" target="OE3Ah8jcWHLyEWeE8CjI-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="80" />
+              <mxPoint x="368" y="80" />
+              <mxPoint x="368" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-8" value="CDC with an &lt;br&gt;Add-on to Kafka&lt;br&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="OE3Ah8jcWHLyEWeE8CjI-6">
+          <mxGeometry x="-0.0063" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-4" value="Psql" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="70" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="OE3Ah8jcWHLyEWeE8CjI-5" target="OE3Ah8jcWHLyEWeE8CjI-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-4" value="&lt;div&gt;Block 1&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="240" y="190" width="120" height="60" as="geometry" />
+        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-5" value="Spark Cluster" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="60" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-5" value="Block 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="400" y="190" width="120" height="60" as="geometry" />
+        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-9" value="Data Lake&lt;br&gt;(Snowflake) " style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OE3Ah8jcWHLyEWeE8CjI-11" value="&lt;div&gt;Kafka Directly&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="150" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
